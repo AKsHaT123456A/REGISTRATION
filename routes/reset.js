@@ -11,7 +11,7 @@ const userData = mongoose.model("userData",userSchema);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
 
-const sendResetMail = async (req,res)=>{
+const sendResetMails = async (req,res)=>{
     try {
         const email = req.body.email;
          userData.findOne({email},function(err,result){
@@ -45,4 +45,4 @@ const sendResetMail = async (req,res)=>{
     //       message:"Error Occured in saving"
     //   });
         }};  
-        module.exports=sendResetMail;
+        module.exports=sendResetMails;

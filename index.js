@@ -11,6 +11,7 @@ const router  = require('./controllers/user');
 const app =express();
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
+app.use("/",router)
 app.use(cookieParser());
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,7 +20,7 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-app.use("/",router);
+
 //const otp = require("./controllers/otp")
 const port = process.env.PORT || 3000 ;
 mongoose.connect(process.env.DATABASE_KEY,{useNewUrlParser:true}).then(console.log("Connection Successfully"));

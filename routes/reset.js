@@ -5,8 +5,7 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const app = express();
 const userSchema= require("../models/userSchema");
-const { json } = require("body-parser");
-express.json({extended:true});
+// express.json({extended:true});
 const userData = mongoose.model("userData",userSchema);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())

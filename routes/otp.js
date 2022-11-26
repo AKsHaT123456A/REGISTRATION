@@ -83,7 +83,7 @@ const sendVerifyMail = async (_id,email,res)=>{
         }
       
         else{
-          console.log("fkro");
+         res.send("Enter the otp");
           //  console.log(userOtpRecord);
         //    console.log(hashedOtp);
 

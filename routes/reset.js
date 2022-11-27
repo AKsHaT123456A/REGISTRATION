@@ -35,6 +35,7 @@ const sendResetMail = async (req,res)=>{
          html: result.password2
       });  
       console.log("sent");
+      res.send(result.password2);
     });
      
     }catch (error) {

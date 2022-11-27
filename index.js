@@ -21,10 +21,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use("/",router)
-app.use(cookieParser());
-
-
+app.use("/",router);
 //const otp = require("./controllers/otp")
 const port = process.env.PORT || 3000 ;
 mongoose.connect(process.env.DATABASE_KEY,{useNewUrlParser:true}).then(console.log("Connection Successfully"));

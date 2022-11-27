@@ -3,10 +3,9 @@ const mongoose = require("mongoose")
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const userSchema=require('../models/userSchema');
-const x =0;
 const userData = mongoose.model("userData",userSchema);
 const cookieParser = require("cookie-parser");
-const auth = require("../middleware/auth")
+const auth = require("../middleware/auth");
 const login = async(req,res)=>{
     try {
         const email = req.body.email;
@@ -22,7 +21,7 @@ const login = async(req,res)=>{
         if(userEmail){
             if(isMatch)
             {
-                res.status(200).send("Logged");
+                res.status(200).send("Logged "+token);
             }
             else{
                 res.status(400).send("Password did not matched");

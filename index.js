@@ -8,11 +8,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const router  = require('./controllers/user');
+const cors = require("cors");
 const app =express();
-app.use(bodyParser.urlencoded({extended : false}));
-app.use(bodyParser.json());
-app.use("/",router)
-app.use(cookieParser());
+app.use(cors());
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -20,6 +18,11 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
+app.use(bodyParser.urlencoded({extended : false}));
+app.use(bodyParser.json());
+app.use("/",router)
+app.use(cookieParser());
+
 
 //const otp = require("./controllers/otp")
 const port = process.env.PORT || 3000 ;

@@ -1,6 +1,5 @@
 const express = require("express"); 
 const router =express();
-const v=0;
 const bodyParser = require("body-parser");
 const register = require("../routes/register");
 const login = require("../routes/login");

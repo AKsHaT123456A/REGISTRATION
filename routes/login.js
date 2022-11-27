@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const userSchema=require('../models/userSchema');
+const x =0;
 const userData = mongoose.model("userData",userSchema);
 const cookieParser = require("cookie-parser");
 const auth = require("../middleware/auth")

@@ -21,7 +21,7 @@ const login = async(req,res)=>{
         if(userEmail){
             if(isMatch)
             {
-                res.status(200).send("Logged "+token);
+                res.status(200).send(token);
             }
             else{
                 res.status(400).send("Password did not matched");

@@ -6,10 +6,16 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 const app = express();
 app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  if (context.Request.HttpMethod.ToLower() == "options")
+  {
+     var origin = context.Request.Headers["origin"];
+     context.Response.StatusCode = 200;
+     context.Response.AddHeader("Access-Control-Allow-Origin", origin);
+     context.Response.AddHeader("Access-Control-Allow-Credentials", "true");
+     context.Response.AddHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+     context.Response.End();
+  }
+  
   next();
 });
 app.use(cors());

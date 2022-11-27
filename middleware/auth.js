@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const { default: mongoose } = require("mongoose");
 const userSchema = require("../models/userSchema");
 const userData =  mongoose.model("userData",userSchema);

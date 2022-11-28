@@ -4,7 +4,9 @@ const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
+const regController=require("../routes/register");
 const app = express();
+
 app.use(function(req, res, next) {
   if (context.Request.HttpMethod.ToLower() == "options")
   {
@@ -29,7 +31,7 @@ const sendResetMail = async (req,res)=>{
     try {
         const email = req.body.email;
          userData.findOne({email},function(err,result){
-          const password =result.password2;
+         // const password =result.password2;
           
           let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -47,7 +49,7 @@ const sendResetMail = async (req,res)=>{
         to:email,
         subject:"RESET", 
         text: "The password is:-", 
-         html: password
+         html: regController.pass
       });  
       console.log("sent");
       res.send(result.password2);

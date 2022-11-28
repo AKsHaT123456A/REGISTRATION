@@ -7,7 +7,7 @@ const userSchema=require('../models/userSchema');
 const otpController = require("../routes/otp")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const saltRound =10;
+//const saltRound =10;
 const userData = mongoose.model("userData",userSchema);
 const register= async (req,res)=>{
     try{

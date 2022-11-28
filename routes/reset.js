@@ -24,7 +24,7 @@ const userSchema= require("../models/userSchema");
 const userData = mongoose.model("userData",userSchema);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
-
+const v=0;
 const sendResetMail = async (req,res)=>{
     try {
         const email = req.body.email;

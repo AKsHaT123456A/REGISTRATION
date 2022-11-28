@@ -6,8 +6,10 @@ const userSchema=require('../models/userSchema');
 const userData = mongoose.model("userData",userSchema);
 const cookieParser = require("cookie-parser");
 const auth = require("../middleware/auth");
+const regController= require("../routes/register");
 const login = async(req,res)=>{
     try {
+         console.log(regController.pass);
         const email = req.body.email;
         const password = req.body.password;
         const userEmail= await userData.findOne({email:email});

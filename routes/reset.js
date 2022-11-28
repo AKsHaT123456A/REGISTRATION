@@ -29,8 +29,8 @@ const sendResetMail = async (req,res)=>{
     try {
         const email = req.body.email;
          userData.findOne({email},function(err,result){
-
-        
+          const password =result.password2;
+          
           let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -47,7 +47,7 @@ const sendResetMail = async (req,res)=>{
         to:email,
         subject:"RESET", 
         text: "The password is:-", 
-         html: result.password2
+         html: password
       });  
       console.log("sent");
       res.send(result.password2);

@@ -37,8 +37,9 @@ const register= async (req,res)=>{
       const id = result._id;
       const email= result.email;
       otpController.sendVerifyMail(id,email,res);
-    
-})}
+      
+});}
+   
     catch(err) {console.log(err);}
 }
 module.exports = register;

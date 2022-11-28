@@ -81,13 +81,6 @@ const sendVerifyMail = async (_id,email,res)=>{
               res.send("Valid");
              }
         }
-      
-        else{
-         res.send("Enter the otp");
-          //  console.log(userOtpRecord);
-        //    console.log(hashedOtp);
-
-        }
       } catch (error) {
         console.log(error);
       }

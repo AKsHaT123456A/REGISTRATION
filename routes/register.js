@@ -31,7 +31,8 @@ const register= async (req,res)=>{
       }
 
      });
-  const pass=req.body.password2;
+
+  
      userData.findOne({email:eMail},async(err,result)=>{
       if(err)console.log(err);
       console.log(result._id);
@@ -43,4 +44,5 @@ const register= async (req,res)=>{
   
     catch(err) {console.log(err);}
 }
-module.exports = {register,pass};
+
+module.exports = register;

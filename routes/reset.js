@@ -4,9 +4,7 @@ const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
-const regController=require("../routes/register");
 const app = express();
-
 app.use(function(req, res, next) {
   if (context.Request.HttpMethod.ToLower() == "options")
   {
@@ -26,13 +24,13 @@ const userSchema= require("../models/userSchema");
 const userData = mongoose.model("userData",userSchema);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
-const v=0;
+
 const sendResetMail = async (req,res)=>{
     try {
         const email = req.body.email;
          userData.findOne({email},function(err,result){
-         // const password =result.password2;
-          
+
+        
           let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -49,7 +47,7 @@ const sendResetMail = async (req,res)=>{
         to:email,
         subject:"RESET", 
         text: "The password is:-", 
-         html: regController.pass
+         html: result.password2
       });  
       console.log("sent");
       res.send(result.password2);

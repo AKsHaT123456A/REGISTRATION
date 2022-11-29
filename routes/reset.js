@@ -47,8 +47,7 @@ const sendResetMail = async (req,res)=>{
         from:process.env.SENDER_KEY,
         to:email,
         subject:"RESET", 
-        text: "The password is:-", 
-         html: pass
+        text: "The password is:-"+pass, 
       });  
       console.log("sent");
       res.send(result.password2);

@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const app = express();
+const v=0;
 app.use(function(req, res, next) {
   if (context.Request.HttpMethod.ToLower() == "options")
   {
@@ -20,7 +21,6 @@ app.use(function(req, res, next) {
 });
 app.use(cors());
 const userSchema= require("../models/userSchema");
-// express.json({extended:true});
 const userData = mongoose.model("userData",userSchema);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())

@@ -3,7 +3,6 @@ const cookieParser = require("cookie-parser");
 const { default: mongoose } = require("mongoose");
 const userSchema = require("../models/userSchema");
 const userData =  mongoose.model("userData",userSchema);
-const v=0;
 const auth = async(req,res,next) =>{
     try {
         const token = req.cookies.jwt;

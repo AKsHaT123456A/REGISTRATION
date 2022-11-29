@@ -12,6 +12,6 @@ router.post("/",login);
 router.get("/home",auth);
 router.get("/logout",auth,logout);
 router.post("/otp",otpController.otpChecker);
-router.get("/reset",sendResetMail)
+router.post("/reset",sendResetMail)
 module.exports = router;
 

@@ -30,9 +30,7 @@ app.use(bodyParser.json())
 const sendResetMail = async (req,res)=>{
     try {
         const email = req.body.email;
-         userData.findOne({email},function(err,result){
-
-         result.password2;
+         const passUser= userData.findOne({email});
           let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -43,17 +41,16 @@ const sendResetMail = async (req,res)=>{
           pass: process.env.EMAIL_TEST_PASSWORD,  
         },
       });
-      let password= regController.pass
       let info =  transporter.sendMail({
         from:process.env.SENDER_KEY,
         to:email,
         subject:"RESET", 
-        text: "The password is:- "+password, 
+        text: "The password is:- "+passUser.password2, 
        // html:password
       });  
       console.log("sent");
       res.send(result.password2);
-    });
+   
      
     }catch (error) {
       console.log(error);

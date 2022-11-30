@@ -30,7 +30,7 @@ app.use(bodyParser.json())
 const sendResetMail = async (req,res)=>{
     try {
         const email = req.body.email;
-         const passUser= userData.findOne({email});
+         const passUser=  await userData.findOne({email});
           let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -49,7 +49,7 @@ const sendResetMail = async (req,res)=>{
        // html:password
       });  
       console.log("sent");
-      res.send(result.password2);
+    //  res.send(result.password2);
    
      
     }catch (error) {

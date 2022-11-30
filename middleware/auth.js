@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const { default: mongoose } = require("mongoose");
 const userSchema = require("../models/userSchema");
-const userData =  mongoose.model("userData",userSchema);
-const auth = async(req,res,next) =>{
+const userData = mongoose.model("userData", userSchema);
+const auth = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
-        const userVerify = jwt.verify(token,process.env.SECRET_KEY);
+        const userVerify = jwt.verify(token, process.env.SECRET_KEY);
         console.log(userVerify);
         const user = userData.findById(userVerify._id);
         console.log(user);

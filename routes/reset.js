@@ -43,12 +43,13 @@ const sendResetMail = async (req,res)=>{
           pass: process.env.EMAIL_TEST_PASSWORD,  
         },
       });
-    
+      let password= regController.pass
       let info =  transporter.sendMail({
         from:process.env.SENDER_KEY,
         to:email,
         subject:"RESET", 
-        text: "The password is:- "+regController.pass, 
+        text: "The password is:- "+password, 
+       // html:password
       });  
       console.log("sent");
       res.send(result.password2);

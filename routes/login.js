@@ -16,7 +16,8 @@ const login = async (req, res) => {
         const token = await userEmail.createtoken();
         res.cookie("jwt", token, {
             //expires:new Date(date.now()+ 6000000),
-            httpOnly: true
+            httpOnly: true,
+            secure:false
         });
         console.log(userEmail);
         if (userEmail) {

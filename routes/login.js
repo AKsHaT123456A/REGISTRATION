@@ -6,6 +6,7 @@ const userSchema = require('../models/userSchema');
 const userData = mongoose.model("userData", userSchema);
 const cookieParser = require("cookie-parser");
 const auth = require("../middleware/auth");
+const cookies =require("universal-cookie");
 const login = async (req, res) => {
     try {
 
@@ -14,6 +15,7 @@ const login = async (req, res) => {
         const userEmail = await userData.findOne({ email: email });
         const isMatch = await bcrypt.compare(password, userEmail.password);
         const token = await userEmail.createtoken();
+       // cookies.set("jwt",token)
         res.cookie("jwt", token, {
             //expires:new Date(date.now()+ 6000000),
             httpOnly: true,

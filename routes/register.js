@@ -14,11 +14,11 @@ const register = async (req, res) => {
     const newuser = new userData(req.body);
     const eMail = req.body.email;
     const token = await newuser.createtoken();
-    res.cookie("jwt", token, {
-      //expires:new Date(date.now()+ 6000000),
-      httpOnly: true
-    });
-    const registered = await newuser.save((err, result) => {
+    // res.cookie("jwt", token, {
+    //   //expires:new Date(date.now()+ 6000000),
+    //   httpOnly: true
+    // });
+    const registered =  newuser.save((err, result) => {
       if (err) {
         console.log(err);
         res.status(400).send("Not Registered");
@@ -46,8 +46,5 @@ const register = async (req, res) => {
   catch (err) { console.log(err); }
 
   }
-  const pass = async(req,res)=>{
-    return req.body.password2;
-}
 
-module.exports = {register,pass};
+module.exports = register;

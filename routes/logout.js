@@ -5,8 +5,8 @@ const bcrypt = require("bcrypt");
 const userSchema = require('../models/userSchema');
 const userData = mongoose.model("userData", userSchema);
 const auth = require("../middleware/auth");
-
-const logout = async (req, res) => {
+const router = express();
+const logout =async (req, res) => {
     try {
         res.clearCookie("jwt");
         console.log("Logged out");
@@ -16,6 +16,6 @@ const logout = async (req, res) => {
         res.status(500).send(error);
         console.log(error);
     }
-}
+};
 
 module.exports = logout

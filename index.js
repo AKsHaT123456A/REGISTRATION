@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const router = require('./controllers/user');
+const loginRouter = require("./routes/login");
 const cors = require("cors");
 const app = express();
 app.use(cors());
@@ -21,7 +22,8 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use("/", router);
+app.use(router);
+app.use("/",loginRouter);
 //const otp = require("./controllers/otp")
 const port = process.env.PORT || 3000;
 mongoose.connect(process.env.DATABASE_KEY, { useNewUrlParser: true }).then(console.log("Connection Successfully"));

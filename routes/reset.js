@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const regController=require("../routes/register")
 const cors = require("cors");
-const app = express();
+// const router = express();
 app.use(function(req, res, next) {
   if (context.Request.HttpMethod.ToLower() == "options")
   {
@@ -21,16 +21,17 @@ app.use(function(req, res, next) {
 });
 app.use(cors());
 const userSchema= require("../models/userSchema");
-const { pass } = require("./register");
+
 // express.json({extended:true});
 const userData = mongoose.model("userData",userSchema);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
 
-const sendResetMail = async (req,res)=>{
+const sendResetMail= async(req,res)=>{
     try {
         const email = req.body.email;
          const passUser=  await userData.findOne({email});
+         if(passUser){
           let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -49,14 +50,18 @@ const sendResetMail = async (req,res)=>{
        // html:password
       });  
       console.log("sent");
+      res.status(200).send("Sent");}
+      else{
+        res.send("Invalid");
+      }
     //  res.send(result.password2);
    
      
     }catch (error) {
       console.log(error);
-    //   res.json({
-    //       status:"FAILED",
-    //       message:"Error Occured in saving"
-    //   });
-        }};  
+      res.json({
+          status:"FAILED",
+          message:"Error Occured in saving"
+      });
+        }};
         module.exports=sendResetMail;

@@ -7,24 +7,25 @@ const userData = mongoose.model("userData", userSchema);
 const cookieParser = require("cookie-parser");
 const auth = require("../middleware/auth");
 const cookies =require("universal-cookie");
-const login = async (req, res) => {
+const jwt = require("jsonwebtoken");
+const router  = new express.Router();
+router.post ("/",async (req, res) => {
     try {
 
         const email = req.body.email;
         const password = req.body.password;
         const userEmail = await userData.findOne({ email: email });
-        const isMatch = await bcrypt.compare(password, userEmail.password);
-        const token = await userEmail.createtoken();
-       // cookies.set("jwt",token)
-        res.cookie("jwt", token, {
+        const isMatch = bcrypt.compare(password, userEmail.password);
+        console.log(userEmail._id);
+        // const token = jwt.sign({ _id: userEmail._id }, process.env.SECRET_KEY);
+        res.cookie("jwt", userEmail.tokens, {
             //expires:new Date(date.now()+ 6000000),
             httpOnly: true,
-            secure:false
         });
         console.log(userEmail);
         if (userEmail) {
             if (isMatch) {
-                res.status(200).send(token);
+                res.status(200).send(userEmail.tokens);
             }
             else {
                 res.status(400).send("Password did not matched");
@@ -37,5 +38,5 @@ const login = async (req, res) => {
         res.status(400).send("Invalid Email");
         console.log(error);
     }
-}
-module.exports = login;
+});
+module.exports = router;

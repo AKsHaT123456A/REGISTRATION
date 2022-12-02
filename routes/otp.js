@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const otp = Math.floor(1000 + Math.random() * 9000);
 const stringOtp = otp.toString();
 console.log(stringOtp);
-
-const sendVerifyMail = async (_id, email, res) => {
+const router = express();
+const sendVerifyMail =async (_id, email, res) => {
   try {
     console.log(_id);
     console.log(otp);

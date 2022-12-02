@@ -5,7 +5,7 @@ const userSchema = require("../models/userSchema");
 const userData = mongoose.model("userData", userSchema);
 const auth = async (req, res, next) => {
     try {
-        const token = req.cookies.jwt;
+        const token = req.body.jwt;
         const userVerify = jwt.verify(token, process.env.SECRET_KEY);
         console.log(userVerify);
         const user = userData.findById(userVerify._id);
